@@ -48,6 +48,7 @@ This is the first course of the deep learning specialization at [Coursera](https
    * [Extra: Ian Goodfellow interview](#extra-ian-goodfellow-interview)
 
 ## Course summary
+[Andrew NG's Machine learning course notes](https://www.holehouse.org/mlclass/06_Logistic_Regression.html)
 
 Here are the course summary as its given on the course [link](https://www.coursera.org/learn/neural-networks-deep-learning):
 
@@ -173,7 +174,7 @@ Here are the course summary as its given on the course [link](https://www.course
 - We want to predict `w` and `b` that minimize the cost function.
 - Our cost function is convex.
 - First we initialize `w` and `b` to 0,0 or initialize them to a random value in the convex function and then try to improve the values the reach minimum value.
-- In Logistic regression people always use 0,0 instead of random.
+- In Logistic regression people always use 0,0 instead of random. But initializing `w` and `b` to ramdom values also givesthe same final values of `w` and `b` as our loss function is convex.
 - The gradient decent algorithm repeats: `w = w - alpha * dw`
   where alpha is the learning rate and `dw` is the derivative of `w` (Change to `w`)
   The derivative is also the slope of `w`
@@ -201,6 +202,7 @@ Here are the course summary as its given on the course [link](https://www.course
 - `f(a) = a^3`  ==> `d(f(a))/d(a) = 3a^2`
 - `f(a) = log(a)`  ==> `d(f(a))/d(a) = 1/a`
 - To conclude, Derivative is the slope and slope is different in different points in the function thats why the derivative is a function.
+- On a straight line the derivative doesn't change. For other functions derivative can have different values at different points.
 
 ### Computation graph
 
@@ -281,6 +283,8 @@ Here are the course summary as its given on the course [link](https://www.course
 - So there will be two inner loops to implement the logistic regression.
 
 - Vectorization is so important on deep learning to reduce loops. In the last code we can make the whole loop in one step using vectorization!
+- [Derivation of `DL/dz`
+](https://www.coursera.org/learn/neural-networks-deep-learning/discussions/weeks/2/threads/ysF-gYfISSGBfoGHyLkhYg)
 
 ### Vectorization
 
