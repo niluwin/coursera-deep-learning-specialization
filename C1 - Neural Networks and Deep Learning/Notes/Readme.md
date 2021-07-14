@@ -384,10 +384,11 @@ Here are the course summary as its given on the course [link](https://www.course
 - We will define the neural networks that has one hidden layer.
 - NN contains of input layers, hidden layers, output layers.
 - Hidden layer means we cant see that layers in the training set.
-- `a0 = x` (the input layer)
+- `a0 = X` (the input layer)
 - `a1` will represent the activation of the hidden neurons.
 - `a2` will represent the output layer.
 - We are talking about 2 layers NN. The input layer isn't counted.
+- We have parameters for hidden and output layers.
 
 ### Computing a Neural Network's Output
 
@@ -397,14 +398,14 @@ Here are the course summary as its given on the course [link](https://www.course
   - `noOfHiddenNeurons = 4`
   - `Nx = 3`
   - Shapes of the variables:
-    - `W1` is the matrix of the first hidden layer, it has a shape of `(noOfHiddenNeurons,nx)`
-    - `b1` is the matrix of the first hidden layer, it has a shape of `(noOfHiddenNeurons,1)`
-    - `z1` is the result of the equation `z1 = W1*X + b`, it has a shape of `(noOfHiddenNeurons,1)`
-    - `a1` is the result of the equation `a1 = sigmoid(z1)`, it has a shape of `(noOfHiddenNeurons,1)`
-    - `W2` is the matrix of the second hidden layer, it has a shape of `(1,noOfHiddenNeurons)`
-    - `b2` is the matrix of the second hidden layer, it has a shape of `(1,1)`
-    - `z2` is the result of the equation `z2 = W2*a1 + b`, it has a shape of `(1,1)`
-    - `a2` is the result of the equation `a2 = sigmoid(z2)`, it has a shape of `(1,1)`
+    - `W1` is the matrix of the first hidden layer, it has a shape of `(noOfHiddenNeuronsCurrent,nx)`
+    - `b1` is the matrix of the first hidden layer, it has a shape of `(noOfHiddenNeuronsCurrent,1)`
+    - `z1` is the result of the equation `z1 = W1*X + b`, it has a shape of `(noOfHiddenNeuronsCurrent,1)`
+    - `a1` is the result of the equation `a1 = sigmoid(z1)`, it has a shape of `(noOfHiddenNeuronsCurrent,1)`
+    - `W2` is the matrix of the second hidden layer, it has a shape of `(noOfHiddenNeuronsCurrent,noOfHiddenNeuronsPrevious)`
+    - `b2` is the matrix of the second hidden layer, it has a shape of `(noOfHiddenNeuronsCurrent,1)`
+    - `z2` is the result of the equation `z2 = W2*a1 + b`, it has a shape of `(noOfHiddenNeuronsCurrent,1)`
+    - `a2` is the result of the equation `a2 = sigmoid(z2)`, it has a shape of `(noOfHiddenNeuronsCurrent,1)`
 
 ### Vectorizing across multiple examples
 
@@ -450,6 +451,7 @@ Here are the course summary as its given on the course [link](https://www.course
     Or
     `A = np.tanh(z)   # Where z is the input matrix`
 - It turns out that the tanh activation usually works better than sigmoid activation function for hidden units because the mean of its output is closer to zero, and so it centers the data better for the next layer.
+- Sigmoid is mostly used only in binary classification problem.
 - Sigmoid or Tanh function disadvantage is that if the input is too small or too high, the slope will be near zero which will cause us the gradient decent problem.
 - One of the popular activation functions that solved the slow gradient decent is the RELU function.
   `RELU = max(0,z) # so if z is negative the slope is 0 and if z is positive the slope remains linear.`
