@@ -468,7 +468,7 @@ Here are the course summary as its given on the course [link](https://www.course
 
 ### Why do you need non-linear activation functions?
 
-- If we removed the activation function from our algorithm that can be called linear activation function.
+- If we removed the activation function from our algorithm that can be called linear activation function or identity activation function.
 - Linear activation function will output linear activations
   - Whatever hidden layers you add, the activation will be always linear like logistic regression (So its useless in a lot of complex problems)
 - You might use linear activation function in one place - in the output layer if the output is real numbers (regression problem). But even in this case if the output value is non-negative you could use RELU instead.
@@ -543,10 +543,10 @@ Here are the course summary as its given on the course [link](https://www.course
   ```
   dZ2 = A2 - Y      # derivative of cost function we used * derivative of the sigmoid function
   dW2 = (dZ2 * A1.T) / m
-  db2 = Sum(dZ2) / m
+  db2 = Sum(dZ2, axis =1, keepdims = True) / m
   dZ1 = (W2.T * dZ2) * g'1(Z1)  # element wise product (*)
   dW1 = (dZ1 * A0.T) / m   # A0 = X
-  db1 = Sum(dZ1) / m
+  db1 = Sum(dZ1, axis =1, keepdims = True) / m
   # Hint there are transposes with multiplication because to keep dimensions correct
   ```
 - How we derived the 6 equations of the backpropagation:   
