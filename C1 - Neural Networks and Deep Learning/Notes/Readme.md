@@ -308,7 +308,9 @@ Here are the course summary as its given on the course [link](https://www.course
    			dz = A - Y                  # Vectorization, dz shape is (1, m)
    			dw = np.dot(X, dz.T) / m    # Vectorization, dw shape is (Nx, 1)
    			db = dz.sum() / m           # Vectorization, dz shape is (1, 1)
-
+          w = w - alpha*dw
+          b = b - alpha*db
+- For loop still be used for multiple iterations of gradient descent.
 ### Notes on Python and NumPy
 
 - In NumPy, `obj.sum(axis = 0)` sums the columns while `obj.sum(axis = 1)` sums the rows.
