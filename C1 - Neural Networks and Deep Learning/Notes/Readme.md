@@ -386,10 +386,11 @@ Here are the course summary as its given on the course [link](https://www.course
 - We will define the neural networks that has one hidden layer.
 - NN contains of input layers, hidden layers, output layers.
 - Hidden layer means we cant see that layers in the training set.
-- `a0 = x` (the input layer)
+- `a0 = X` (the input layer)
 - `a1` will represent the activation of the hidden neurons.
 - `a2` will represent the output layer.
 - We are talking about 2 layers NN. The input layer isn't counted.
+- We have parameters for hidden and output layers.
 
 ### Computing a Neural Network's Output
 
@@ -399,14 +400,14 @@ Here are the course summary as its given on the course [link](https://www.course
   - `noOfHiddenNeurons = 4`
   - `Nx = 3`
   - Shapes of the variables:
-    - `W1` is the matrix of the first hidden layer, it has a shape of `(noOfHiddenNeurons,nx)`
-    - `b1` is the matrix of the first hidden layer, it has a shape of `(noOfHiddenNeurons,1)`
-    - `z1` is the result of the equation `z1 = W1*X + b`, it has a shape of `(noOfHiddenNeurons,1)`
-    - `a1` is the result of the equation `a1 = sigmoid(z1)`, it has a shape of `(noOfHiddenNeurons,1)`
-    - `W2` is the matrix of the second hidden layer, it has a shape of `(1,noOfHiddenNeurons)`
-    - `b2` is the matrix of the second hidden layer, it has a shape of `(1,1)`
-    - `z2` is the result of the equation `z2 = W2*a1 + b`, it has a shape of `(1,1)`
-    - `a2` is the result of the equation `a2 = sigmoid(z2)`, it has a shape of `(1,1)`
+    - `W1` is the matrix of the first hidden layer, it has a shape of `(noOfHiddenNeuronsCurrent,nx)`
+    - `b1` is the matrix of the first hidden layer, it has a shape of `(noOfHiddenNeuronsCurrent,1)`
+    - `z1` is the result of the equation `z1 = W1*X + b`, it has a shape of `(noOfHiddenNeuronsCurrent,1)`
+    - `a1` is the result of the equation `a1 = sigmoid(z1)`, it has a shape of `(noOfHiddenNeuronsCurrent,1)`
+    - `W2` is the matrix of the second hidden layer, it has a shape of `(noOfHiddenNeuronsCurrent,noOfHiddenNeuronsPrevious)`
+    - `b2` is the matrix of the second hidden layer, it has a shape of `(noOfHiddenNeuronsCurrent,1)`
+    - `z2` is the result of the equation `z2 = W2*a1 + b`, it has a shape of `(noOfHiddenNeuronsCurrent,1)`
+    - `a2` is the result of the equation `a2 = sigmoid(z2)`, it has a shape of `(noOfHiddenNeuronsCurrent,1)`
 
 ### Vectorizing across multiple examples
 
@@ -452,6 +453,7 @@ Here are the course summary as its given on the course [link](https://www.course
     Or
     `A = np.tanh(z)   # Where z is the input matrix`
 - It turns out that the tanh activation usually works better than sigmoid activation function for hidden units because the mean of its output is closer to zero, and so it centers the data better for the next layer.
+- Sigmoid is mostly used only in binary classification problem.
 - Sigmoid or Tanh function disadvantage is that if the input is too small or too high, the slope will be near zero which will cause us the gradient decent problem.
 - One of the popular activation functions that solved the slow gradient decent is the RELU function.
   `RELU = max(0,z) # so if z is negative the slope is 0 and if z is positive the slope remains linear.`
@@ -468,7 +470,7 @@ Here are the course summary as its given on the course [link](https://www.course
 
 ### Why do you need non-linear activation functions?
 
-- If we removed the activation function from our algorithm that can be called linear activation function.
+- If we removed the activation function from our algorithm that can be called linear activation function or identity activation function.
 - Linear activation function will output linear activations
   - Whatever hidden layers you add, the activation will be always linear like logistic regression (So its useless in a lot of complex problems)
 - You might use linear activation function in one place - in the output layer if the output is real numbers (regression problem). But even in this case if the output value is non-negative you could use RELU instead.
@@ -543,10 +545,10 @@ Here are the course summary as its given on the course [link](https://www.course
   ```
   dZ2 = A2 - Y      # derivative of cost function we used * derivative of the sigmoid function
   dW2 = (dZ2 * A1.T) / m
-  db2 = Sum(dZ2) / m
+  db2 = Sum(dZ2, axis =1, keepdims = True) / m
   dZ1 = (W2.T * dZ2) * g'1(Z1)  # element wise product (*)
   dW1 = (dZ1 * A0.T) / m   # A0 = X
-  db1 = Sum(dZ1) / m
+  db1 = Sum(dZ1, axis =1, keepdims = True) / m
   # Hint there are transposes with multiplication because to keep dimensions correct
   ```
 - How we derived the 6 equations of the backpropagation:   
