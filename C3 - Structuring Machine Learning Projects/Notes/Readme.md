@@ -213,6 +213,7 @@ Here are the course summary as its given on the course [link](https://www.course
   - Online advertising.
   - Product recommendation.
   - Loan approval.
+  - logistics
 - The last examples are not natural perception task, rather learning on structural data. Humans are far better in natural perception tasks like computer vision and speech recognition.
 - It's harder for machines to surpass human-level performance in natural perception task. But there are already some systems that achieved it.
 
@@ -279,6 +280,10 @@ Here are the course summary as its given on the course [link](https://www.course
       - Then errors due to incorrect data: 0.6%
       - Then errors due to other causes: 9.4%
     - Then you should focus on the 9.4% error rather than the incorrect data.
+    - If overall dev set error: 2%
+      - Then errors due to incorrect data: 0.6%
+      - Then errors due to other causes: 1.4%
+    - Then you should focus on the 0.6% error..
 - Consider these guidelines while correcting the dev/test mislabeled examples:
   - Apply the same process to your dev and test sets to make sure they continue to come from the same distribution.
   - Consider examining examples your algorithm got right as well as ones it got wrong. (Not always done if you reached a good accuracy)
@@ -323,6 +328,18 @@ Here are the course summary as its given on the course [link](https://www.course
   - Train-dev error: 1.5%
   - Dev error: 10%
   - In this case we have something called *Data mismatch* problem.
+- Suppose we have a different situation:
+  - Human error: 0%
+  - Train error: 10%
+  - Train-dev error: 11%
+  - Dev error: 12%
+  - In this case we have something called *Avoidable bias* problem.
+- Suppose we have a different situation:
+  - Human error: 0%
+  - Train error: 10%
+  - Train-dev error: 11%
+  - Dev error: 20%
+  - In this case we have something called *Avoidable bias and Data mismatch* problem.
 - Conclusions:
   1. Human-level error (proxy for Bayes error)
   2. Train error
